@@ -43,7 +43,7 @@ namespace YoketoruVS21
 
         private void ToTitle_button_Click(object sender, EventArgs e)
         {
-
+            nextState = State.Title;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -88,6 +88,18 @@ namespace YoketoruVS21
                     Startbutton.Visible = false;
                     Copyright_label.Visible = false;
                     HighScore_label.Visible = false;
+                    break;
+
+                case State.Gameover:
+                    //MessageBox.Show("Gameover");
+                    GameOver_label.Visible = true;
+                    ToTitle_button.Visible = true;
+                    break;
+
+                case State.Clear:
+                    //MessageBox.Show("Clear");
+                    Clear_label.Visible = true;
+                    ToTitle_button.Visible = true;
                     break;
             }
         }
