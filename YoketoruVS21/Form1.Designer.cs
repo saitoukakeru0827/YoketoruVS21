@@ -29,6 +29,7 @@ namespace YoketoruVS21
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Title_label = new System.Windows.Forms.Label();
             this.Startbutton = new System.Windows.Forms.Button();
             this.Copyright_label = new System.Windows.Forms.Label();
@@ -37,6 +38,8 @@ namespace YoketoruVS21
             this.HighScore_label = new System.Windows.Forms.Label();
             this.GameOver_label = new System.Windows.Forms.Label();
             this.Clear_label = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.ToTitle_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Title_label
@@ -127,12 +130,26 @@ namespace YoketoruVS21
             this.Clear_label.Text = "クリア！";
             this.Clear_label.Visible = false;
             // 
+            // ToTitle_button
+            // 
+            this.ToTitle_button.BackColor = System.Drawing.Color.Gray;
+            this.ToTitle_button.Font = new System.Drawing.Font("MS UI Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ToTitle_button.ForeColor = System.Drawing.Color.Blue;
+            this.ToTitle_button.Location = new System.Drawing.Point(275, 249);
+            this.ToTitle_button.Name = "ToTitle_button";
+            this.ToTitle_button.Size = new System.Drawing.Size(250, 115);
+            this.ToTitle_button.TabIndex = 8;
+            this.ToTitle_button.Text = "タイトルへ";
+            this.ToTitle_button.UseVisualStyleBackColor = false;
+            this.ToTitle_button.Click += new System.EventHandler(this.ToTitle_button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ToTitle_button);
             this.Controls.Add(this.Clear_label);
             this.Controls.Add(this.GameOver_label);
             this.Controls.Add(this.HighScore_label);
@@ -159,6 +176,8 @@ namespace YoketoruVS21
         private System.Windows.Forms.Label HighScore_label;
         private System.Windows.Forms.Label GameOver_label;
         private System.Windows.Forms.Label Clear_label;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button ToTitle_button;
     }
 }
 

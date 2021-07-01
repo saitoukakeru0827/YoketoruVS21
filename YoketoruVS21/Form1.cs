@@ -32,5 +32,10 @@ namespace YoketoruVS21
         {
 
         }
+
+        private void ToTitle_button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
