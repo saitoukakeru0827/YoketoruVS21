@@ -64,6 +64,7 @@ namespace YoketoruVS21
             this.Startbutton.TabIndex = 1;
             this.Startbutton.Text = "スタート!!";
             this.Startbutton.UseVisualStyleBackColor = false;
+            this.Startbutton.Click += new System.EventHandler(this.Startbutton_Click);
             // 
             // Copyright_label
             // 
@@ -129,6 +130,11 @@ namespace YoketoruVS21
             this.Clear_label.TabIndex = 7;
             this.Clear_label.Text = "クリア！";
             this.Clear_label.Visible = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // ToTitle_button
             // 

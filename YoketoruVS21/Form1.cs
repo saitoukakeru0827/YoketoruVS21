@@ -37,5 +37,44 @@ namespace YoketoruVS21
         {
 
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(nextState != State.None)
+            {
+                initProc();
+            }
+        }
+
+        void initProc()
+        {
+            currentState = nextState;
+            nextState = State.None;
+
+            switch(currentState)
+            {
+                case State.Title:
+                    Title_label.Visible = true;
+                    Startbutton.Visible = true;
+                    Copyright_label.Visible = true;
+                    HighScore_label.Visible = true;
+                    GameOver_label.Visible = false;
+                    Clear_label.Visible = false;
+                    ToTitle_button.Visible = false;
+                    break;
+
+                case State.Game:
+                    Title_label.Visible = false;
+                    Startbutton.Visible = false;
+                    Copyright_label.Visible = false;
+                    HighScore_label.Visible = false;
+                    break;
+            }
+        }
+
+        private void Startbutton_Click(object sender, EventArgs e)
+        {
+            nextState = State.Game;
+        }
     }
 }
