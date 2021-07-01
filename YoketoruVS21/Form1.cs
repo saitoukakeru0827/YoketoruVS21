@@ -124,6 +124,11 @@ namespace YoketoruVS21
                     Startbutton.Visible = false;
                     Copyright_label.Visible = false;
                     HighScore_label.Visible = false;
+                    for(int i = EnemyIndex;i<ChrMax;i++)
+                    {
+                        chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
+                        chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
+                    }
                     break;
 
                 case State.Gameover:
