@@ -97,6 +97,7 @@ namespace YoketoruVS21
             this.Itme_label.Size = new System.Drawing.Size(67, 24);
             this.Itme_label.TabIndex = 4;
             this.Itme_label.Text = "★:10";
+            this.Itme_label.Click += new System.EventHandler(this.Itme_label_Click);
             // 
             // HighScore_label
             // 

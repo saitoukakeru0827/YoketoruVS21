@@ -18,8 +18,8 @@ namespace YoketoruVS21
     {
         const bool isDebug = true;
         const int PlayerMax = 1;
-        const int EnemyMax = 3;
-        const int ItemMax = 3;
+        const int EnemyMax = 10;
+        const int ItemMax = 10;
         const int ChrMax = PlayerMax + EnemyMax + ItemMax;
         Label[] chrs = new Label[ChrMax];
         const int PlayerIndex = 0;
@@ -30,6 +30,7 @@ namespace YoketoruVS21
         const string EnemyText = "◆";
         const string ItemText = "★";
 
+        int zanki=ItemMax;
         static Random rand = new Random();
         enum State
         {
@@ -64,6 +65,7 @@ namespace YoketoruVS21
                 {
                     chrs[i].Text = ItemText;
                 }
+                chrs[i].Font = temp_label.Font;
                 Controls.Add(chrs[i]);
             }
         }
@@ -100,6 +102,7 @@ namespace YoketoruVS21
             {
                 UpdateGame();
             }
+            Itme_label.Text = "★" + zanki;
         }
 
         void initProc()
@@ -120,11 +123,15 @@ namespace YoketoruVS21
                     break;
 
                 case State.Game:
+                    for (int i = 0; i < ChrMax; i++)
+                    {
+                        chrs[i].Visible = true;
+                    }
                     Title_label.Visible = false;
                     Startbutton.Visible = false;
                     Copyright_label.Visible = false;
                     HighScore_label.Visible = false;
-                    for(int i = EnemyIndex;i<ChrMax;i++)
+                    for(int i = EnemyIndex-1;i<ChrMax;i++)
                     {
                         chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
                         chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
@@ -135,12 +142,20 @@ namespace YoketoruVS21
                     //MessageBox.Show("Gameover");
                     GameOver_label.Visible = true;
                     ToTitle_button.Visible = true;
+                    for(int i = 0; i<ChrMax;i++)
+                    {
+                        chrs[i].Visible = false;
+                    }
                     break;
 
                 case State.Clear:
                     //MessageBox.Show("Clear");
                     Clear_label.Visible = true;
                     ToTitle_button.Visible = true;
+                    for (int i = 0; i < ChrMax; i++)
+                    {
+                        chrs[i].Visible = false;
+                    }
                     break;
             }
         }
@@ -152,10 +167,34 @@ namespace YoketoruVS21
             //TODO:mpがプレイヤーの中心になるように設定
             chrs[1].Left = mp.X - chrs[1].Width/2;
             chrs[1].Top = mp.Y - chrs[1].Height/2;
+            for (int i=0;i<ChrMax;i++)
+            {
+                if((mp.X>=chrs[i].Left)
+                && (mp.X<chrs[i].Right)
+                && (mp.Y>=chrs[i].Top)
+                && (mp.Y < chrs[i].Bottom))
+                {
+                    if (chrs[i].Text == EnemyText)
+                    {
+                        nextState = State.Gameover;
+                        MessageBox.Show("ゲームオーバー");
+                    }
+                    if (chrs[i].Text == ItemText)
+                    {
+                        chrs[i].Visible = false;
+                        zanki--;
+                    }
+                }
+            }
         }
         private void Startbutton_Click(object sender, EventArgs e)
         {
             nextState = State.Game;
+        }
+
+        private void Itme_label_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
