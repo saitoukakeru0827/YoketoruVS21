@@ -150,6 +150,8 @@ namespace YoketoruVS21
             Point mp = PointToClient(MousePosition);
 
             //TODO:mpがプレイヤーの中心になるように設定
+            chrs[1].Left = mp.X - chrs[1].Width/2;
+            chrs[1].Top = mp.Y - chrs[1].Height/2;
         }
         private void Startbutton_Click(object sender, EventArgs e)
         {

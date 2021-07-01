@@ -40,6 +40,7 @@ namespace YoketoruVS21
             this.Clear_label = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ToTitle_button = new System.Windows.Forms.Button();
+            this.temp_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Title_label
@@ -149,12 +150,24 @@ namespace YoketoruVS21
             this.ToTitle_button.UseVisualStyleBackColor = false;
             this.ToTitle_button.Click += new System.EventHandler(this.ToTitle_button_Click);
             // 
+            // temp_label
+            // 
+            this.temp_label.AutoSize = true;
+            this.temp_label.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.temp_label.Location = new System.Drawing.Point(13, 76);
+            this.temp_label.Name = "temp_label";
+            this.temp_label.Size = new System.Drawing.Size(47, 33);
+            this.temp_label.TabIndex = 9;
+            this.temp_label.Text = "★";
+            this.temp_label.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.temp_label);
             this.Controls.Add(this.ToTitle_button);
             this.Controls.Add(this.Clear_label);
             this.Controls.Add(this.GameOver_label);
@@ -184,6 +197,7 @@ namespace YoketoruVS21
         private System.Windows.Forms.Label Clear_label;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button ToTitle_button;
+        private System.Windows.Forms.Label temp_label;
     }
 }
 
