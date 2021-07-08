@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -203,6 +204,7 @@ namespace YoketoruVS21
                     {
                         chrs[i].Visible = false;
                     }
+                    File.WriteAllText("hisc.txt", $"hiscore\n");
                     break;
             }
         }
