@@ -17,6 +17,9 @@ namespace YoketoruVS21
     public partial class Form1 : Form
     {
         const bool isDebug = true;
+
+        const int SpeedMax = 20;
+
         const int PlayerMax = 1;
         const int EnemyMax = 10;
         const int ItemMax = 10;
@@ -30,7 +33,11 @@ namespace YoketoruVS21
         const string EnemyText = "◆";
         const string ItemText = "★";
 
-        int zanki=ItemMax;
+        int ItemCount=ItemMax;
+        int start = 0;
+        int TimeCount = 100;
+        int[] vx = new int[ChrMax];
+        int[] vy = new int[ChrMax];
         static Random rand = new Random();
         enum State
         {
@@ -53,7 +60,9 @@ namespace YoketoruVS21
             {
                 chrs[i] = new Label();
                 chrs[i].AutoSize = true;
-                if(i==PlayerMax)
+                vx[i] = rand.Next(-SpeedMax, SpeedMax + 1);
+                vy[i] = rand.Next(-SpeedMax, SpeedMax + 1);
+                if (i==PlayerMax)
                 {
                     chrs[i].Text = PlayerText;
                 }
@@ -68,6 +77,7 @@ namespace YoketoruVS21
                 chrs[i].Font = temp_label.Font;
                 Controls.Add(chrs[i]);
             }
+            Time_label.Text = "Time " + TimeCount;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -82,7 +92,24 @@ namespace YoketoruVS21
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(isDebug)
+            for(int i = 0; i<ChrMax;i++)
+            {
+                if (i != PlayerMax && start == 1)
+                {
+                    chrs[i].Left += vx[i];
+                    chrs[i].Top += vy[i];
+                }
+            }
+            if (start == 1)
+                TimeCount--;
+            if (TimeCount <= 0)
+            {
+                nextState = State.Gameover;
+                ItemCount = 10;
+                start = 0;
+                TimeCount = 100;
+            }
+                if (isDebug)
             {
                 if (GetAsyncKeyState((int)Keys.O) < 0)
                 {
@@ -102,7 +129,27 @@ namespace YoketoruVS21
             {
                 UpdateGame();
             }
-            Itme_label.Text = "★" + zanki;
+            Itme_label.Text = "★" + ItemCount;
+            for(int i = 0;i<ChrMax;i++)
+            {
+                if (chrs[i].Left < 0)
+                {
+                   vx[i] = Math.Abs(vx[i]);
+                }
+                if (chrs[i].Top < 0)
+                {
+                    vy[i] = Math.Abs(vy[i]);
+                }
+                if (chrs[i].Right > ClientSize.Width)
+                {
+                     vx[i] = -Math.Abs(vx[i]);
+                }
+                if (chrs[i].Bottom > ClientSize.Height)
+                {
+                        vy[i] = -Math.Abs(vy[i]);
+                }
+            }
+            Time_label.Text = "Time " + TimeCount;
         }
 
         void initProc()
@@ -177,12 +224,24 @@ namespace YoketoruVS21
                     if (chrs[i].Text == EnemyText)
                     {
                         nextState = State.Gameover;
-                        MessageBox.Show("ゲームオーバー");
+                        ItemCount = 10;
+                        TimeCount = 100;
+                        start = 0;
+                        MessageBox.Show("ゲームオーバー");                       
                     }
                     if (chrs[i].Text == ItemText)
                     {
                         chrs[i].Visible = false;
-                        zanki--;
+                        ItemCount--;
+                        chrs[i].Left = -1000;
+                        if (ItemCount == 0)
+                        {
+                            nextState = State.Clear;
+                            ItemCount = 10;
+                            start = 0;
+                            TimeCount = 100;
+                            MessageBox.Show("クリア！");                            
+                        }
                     }
                 }
             }
@@ -190,9 +249,15 @@ namespace YoketoruVS21
         private void Startbutton_Click(object sender, EventArgs e)
         {
             nextState = State.Game;
+            start = 1;
         }
 
         private void Itme_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Time_label_Click(object sender, EventArgs e)
         {
 
         }

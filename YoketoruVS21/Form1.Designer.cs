@@ -33,7 +33,7 @@ namespace YoketoruVS21
             this.Title_label = new System.Windows.Forms.Label();
             this.Startbutton = new System.Windows.Forms.Button();
             this.Copyright_label = new System.Windows.Forms.Label();
-            this.Tim_elabel = new System.Windows.Forms.Label();
+            this.Time_label = new System.Windows.Forms.Label();
             this.Itme_label = new System.Windows.Forms.Label();
             this.HighScore_label = new System.Windows.Forms.Label();
             this.GameOver_label = new System.Windows.Forms.Label();
@@ -78,15 +78,16 @@ namespace YoketoruVS21
             this.Copyright_label.TabIndex = 2;
             this.Copyright_label.Text = "Copyright© 2021 choto";
             // 
-            // Tim_elabel
+            // Time_label
             // 
-            this.Tim_elabel.AutoSize = true;
-            this.Tim_elabel.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.Tim_elabel.Location = new System.Drawing.Point(13, 13);
-            this.Tim_elabel.Name = "Tim_elabel";
-            this.Tim_elabel.Size = new System.Drawing.Size(110, 24);
-            this.Tim_elabel.TabIndex = 3;
-            this.Tim_elabel.Text = "Time 100";
+            this.Time_label.AutoSize = true;
+            this.Time_label.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Time_label.Location = new System.Drawing.Point(13, 13);
+            this.Time_label.Name = "Time_label";
+            this.Time_label.Size = new System.Drawing.Size(110, 24);
+            this.Time_label.TabIndex = 3;
+            this.Time_label.Text = "Time 100";
+            this.Time_label.Click += new System.EventHandler(this.Time_label_Click);
             // 
             // Itme_label
             // 
@@ -174,7 +175,7 @@ namespace YoketoruVS21
             this.Controls.Add(this.GameOver_label);
             this.Controls.Add(this.HighScore_label);
             this.Controls.Add(this.Itme_label);
-            this.Controls.Add(this.Tim_elabel);
+            this.Controls.Add(this.Time_label);
             this.Controls.Add(this.Copyright_label);
             this.Controls.Add(this.Startbutton);
             this.Controls.Add(this.Title_label);
@@ -191,7 +192,7 @@ namespace YoketoruVS21
         private System.Windows.Forms.Label Title_label;
         private System.Windows.Forms.Button Startbutton;
         private System.Windows.Forms.Label Copyright_label;
-        private System.Windows.Forms.Label Tim_elabel;
+        private System.Windows.Forms.Label Time_label;
         private System.Windows.Forms.Label Itme_label;
         private System.Windows.Forms.Label HighScore_label;
         private System.Windows.Forms.Label GameOver_label;
